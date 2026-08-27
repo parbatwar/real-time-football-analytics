@@ -225,6 +225,47 @@ parsed_events = (
     )
 )
 
+# ============================================================
+# DATA QUALITY VALIDATION
+# ============================================================
+
+valid_event_types = [
+    "PASS",
+    "SHOT",
+    "SHOT_ON_TARGET",
+    "GOAL",
+    "FOUL",
+    "TACKLE",
+    "YELLOW_CARD",
+    "RED_CARD",
+    "CORNER",
+    "SUBSTITUTION"
+]
+
+
+valid_events = parsed_events.filter(
+
+    col("event_id").isNotNull()
+
+    & col("match_id").isNotNull()
+
+    & col("team").isNotNull()
+
+    & col("event_type").isin(valid_event_types)
+
+    & col("minute").between(0, 90)
+
+    & col("x").between(0, 100)
+
+    & col("y").between(0, 100)
+
+    & col("xg").between(0, 1)
+)
+
+
+invalid_events = parsed_events.subtract(
+    valid_events
+)
 
 # ============================================================
 # WRITE BATCH TO POSTGRESQL
@@ -883,7 +924,7 @@ def write_to_postgres(
 
 query = (
 
-    parsed_events
+    valid_events
 
     .writeStream
 
