@@ -1,208 +1,301 @@
 import random
+import time
 from datetime import datetime
 
 
-matches = {
-    "match_001": {
-        "team01": [
-            "player_001",
-            "player_002",
-            "player_003",
-            "player_004",
-            "player_005",
-            "player_006",
-            "player_007",
-            "player_008",
-            "player_009",
-            "player_010",
-            "player_011"
-        ],
-        "team02": [
-            "player_012",
-            "player_013",
-            "player_014",
-            "player_015",
-            "player_016",
-            "player_017",
-            "player_018",
-            "player_019",
-            "player_020",
-            "player_021",
-            "player_022"
-        ]
-    },
+# ==================================================
+# TEAMS AND PLAYERS
+# ==================================================
 
-    "match_002": {
-        "team03": [
-            "player_023",
-            "player_024",
-            "player_025",
-            "player_026",
-            "player_027",
-            "player_028",
-            "player_029",
-            "player_030",
-            "player_031",
-            "player_032",
-            "player_033"
-        ],
-        "team04": [
-            "player_034",
-            "player_035",
-            "player_036",
-            "player_037",
-            "player_038",
-            "player_039",
-            "player_040",
-            "player_041",
-            "player_042",
-            "player_043",
-            "player_044"
-        ]
-    },
+teams = {
 
-    "match_003": {
-        "team05": [
-            "player_045",
-            "player_046",
-            "player_047",
-            "player_048",
-            "player_049",
-            "player_050",
-            "player_051",
-            "player_052",
-            "player_053",
-            "player_054",
-            "player_055"
-        ],
-        "team06": [
-            "player_056",
-            "player_057",
-            "player_058",
-            "player_059",
-            "player_060",
-            "player_061",
-            "player_062",
-            "player_063",
-            "player_064",
-            "player_065",
-            "player_066"
-        ]
-    },
+    "Chelsea": [
+        "Sanchez",
+        "James",
+        "Lacroix",
+        "Colwill",
+        "Cucurella",
+        "Caicedo",
+        "Enzo Fernandez",
+        "Palmer",
+        "Rogers",
+        "Joao Pedro",
+        "Neto",
+    ],
 
-    "match_004": {
-        "team07": [
-            "player_067",
-            "player_068",
-            "player_069",
-            "player_070",
-            "player_071",
-            "player_072",
-            "player_073",
-            "player_074",
-            "player_075",
-            "player_076",
-            "player_077"
-        ],
-        "team08": [
-            "player_078",
-            "player_079",
-            "player_080",
-            "player_081",
-            "player_082",
-            "player_083",
-            "player_084",
-            "player_085",
-            "player_086",
-            "player_087",
-            "player_088"
-        ]
-    },
+    "Liverpool": [
+        "Alisson",
+        "Alexander-Arnold",
+        "Van Dijk",
+        "Konate",
+        "Robertson",
+        "Mac Allister",
+        "Gravenberch",
+        "Szoboszlai",
+        "Salah",
+        "Diaz",
+        "Nunez",
+    ],
 
-    "match_005": {
-        "team09": [
-            "player_089",
-            "player_090",
-            "player_091",
-            "player_092",
-            "player_093",
-            "player_094",
-            "player_095",
-            "player_096",
-            "player_097",
-            "player_098",
-            "player_099"
-        ],
-        "team10": [
-            "player_100",
-            "player_101",
-            "player_102",
-            "player_103",
-            "player_104",
-            "player_105",
-            "player_106",
-            "player_107",
-            "player_108",
-            "player_109",
-            "player_110"
-        ]
-    }
+    "Barcelona": [
+        "Ter Stegen",
+        "Kounde",
+        "Araujo",
+        "Cubarsi",
+        "Balde",
+        "Pedri",
+        "De Jong",
+        "Gavi",
+        "Lamine Yamal",
+        "Lewandowski",
+        "Raphinha",
+    ],
+
+    "Bayern Munich": [
+        "Neuer",
+        "Kimmich",
+        "Upamecano",
+        "Kim Min-jae",
+        "Davies",
+        "Goretzka",
+        "Musiala",
+        "Olise",
+        "Gnabry",
+        "Kane",
+        "Coman",
+    ],
 }
 
+
+# ==================================================
+# EVENT TYPES
+# ==================================================
 
 event_types = [
     "PASS",
     "SHOT",
+    "SHOT_ON_TARGET",
     "GOAL",
     "FOUL",
     "TACKLE",
+    "CORNER",
     "YELLOW_CARD",
     "RED_CARD",
-    "SUBSTITUTION"
+    "SUBSTITUTION",
 ]
 
 
 event_weights = [
-    60,  # PASS
-    12,  # SHOT
-    10,  # GOAL
-    8,   # FOUL
-    2,   # TACKLE
-    5,   # YELLOW_CARD
-    1,   # RED_CARD
-    2    # SUBSTITUTION
+    55,
+    10,
+    6,
+    3,
+    8,
+    7,
+    5,
+    4,
+    0.2,
+    1,
 ]
 
 
-def create_event(event_number, minute):
+# ==================================================
+# CREATE MATCH
+# ==================================================
 
-    # Select a match
-    match_id = random.choice(list(matches.keys()))
+def create_match(
+    match_number,
+    home_team,
+    away_team
+):
 
-    # Select a team from that match
-    teams = matches[match_id]
-    team_id = random.choice(list(teams.keys()))
+    return {
 
-    # Select a player from that team
-    player_id = random.choice(teams[team_id])
+        "match_id":
+            f"match_{match_number:03d}",
 
-    # Select event type using realistic weights
+        "competition":
+            "Friendly",
+
+        "home_team":
+            home_team,
+
+        "away_team":
+            away_team,
+
+        "status":
+            "LIVE",
+
+        "current_minute":
+            0,
+
+        "created_at":
+            datetime.now().isoformat(),
+    }
+
+
+# ==================================================
+# CREATE EVENT
+# ==================================================
+
+def create_event(
+    event_number,
+    match,
+    minute
+):
+
+    # ----------------------------------------------
+    # Choose team
+    # ----------------------------------------------
+
+    team = random.choice([
+        match["home_team"],
+        match["away_team"],
+    ])
+
+
+    # ----------------------------------------------
+    # Choose player
+    # ----------------------------------------------
+
+    player = random.choice(
+        teams[team]
+    )
+
+
+    # ----------------------------------------------
+    # Choose event
+    # ----------------------------------------------
+
     event_type = random.choices(
         event_types,
         weights=event_weights,
         k=1
     )[0]
 
-    event = {
-        "event_id": f"evt_{event_number:05d}",
-        "match_id": match_id,
-        "player_id": player_id,
-        "team_id": team_id,
-        "event_type": event_type,
-        "minute": minute,
-        "x": random.randint(0, 100),
-        "y": random.randint(0, 100),
-        "timestamp": datetime.now().isoformat()
+
+    # ----------------------------------------------
+    # Pitch position
+    # ----------------------------------------------
+
+    x = round(
+        random.uniform(0, 100),
+        2
+    )
+
+    y = round(
+        random.uniform(0, 100),
+        2
+    )
+
+
+    # ----------------------------------------------
+    # Expected goals
+    # ----------------------------------------------
+
+    if event_type in [
+        "SHOT",
+        "SHOT_ON_TARGET",
+        "GOAL",
+    ]:
+
+        xg = round(
+            random.uniform(
+                0.02,
+                0.85
+            ),
+            2
+        )
+
+    else:
+
+        xg = 0.0
+
+
+    # ==================================================
+    # UNIQUE EVENT ID
+    #
+    # Example:
+    #
+    # match_003_evt_00001
+    # match_003_evt_00002
+    # match_004_evt_00003
+    #
+    # Because match_id changes every run,
+    # old events will never conflict.
+    # ==================================================
+
+    event_id = (
+        f"{match['match_id']}"
+        f"_evt_{event_number:05d}"
+    )
+
+
+    # ==================================================
+    # RETURN EVENT
+    # ==================================================
+
+    return {
+
+        "event_id":
+            event_id,
+
+        "match_id":
+            match["match_id"],
+
+        "competition":
+            match["competition"],
+
+        "home_team":
+            match["home_team"],
+
+        "away_team":
+            match["away_team"],
+
+        "player":
+            player,
+
+        "team":
+            team,
+
+        "event_type":
+            event_type,
+
+        "minute":
+            minute,
+
+        "x":
+            x,
+
+        "y":
+            y,
+
+        "xg":
+            xg,
+
+        "timestamp":
+            datetime.now().isoformat(),
     }
 
-    return event
+
+# ==================================================
+# DIRECT TEST
+# ==================================================
+
+if __name__ == "__main__":
+
+    match = create_match(
+        1,
+        "Chelsea",
+        "Liverpool"
+    )
+
+    print(match)
+
+    event = create_event(
+        1,
+        match,
+        1
+    )
+
+    print(event)

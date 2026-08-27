@@ -1,0 +1,662 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #0f1115;
+  color: #e5e7eb;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+.navbar {
+  height: 64px;
+  padding: 0 4%;
+
+  background: #15181e;
+  border-bottom: 1px solid #2a2f38;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.brand-label,
+.section-label {
+  display: block;
+
+  margin-bottom: 4px;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 1.2px;
+
+  color: #7d8590;
+}
+
+.navbar nav {
+  display: flex;
+  gap: 6px;
+}
+
+.nav-link {
+  padding: 8px 12px;
+
+  border-radius: 5px;
+
+  font-size: 13px;
+
+  color: #9ca3af;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+  background: #1d2128;
+}
+
+.nav-link.active {
+  color: #ffffff;
+  background: #252a33;
+}
+
+
+/* =========================================
+   PAGE
+========================================= */
+
+.page-container {
+  width: min(1180px, 94%);
+  margin: 0 auto;
+
+  padding: 30px 0 60px;
+}
+
+.page-heading {
+  margin-bottom: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.page-heading h1 {
+  margin: 4px 0 5px;
+
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.page-heading p {
+  margin: 0;
+
+  font-size: 13px;
+
+  color: #858b95;
+}
+
+.refresh-status {
+  padding: 6px 10px;
+
+  border: 1px solid #2d333d;
+  border-radius: 4px;
+
+  background: #15181e;
+
+  color: #8fa398;
+
+  font-size: 11px;
+}
+
+
+/* =========================================
+   LIVE MATCHES
+========================================= */
+
+.live-matches-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.live-match-block {
+  width: 100%;
+}
+
+
+/* =========================================
+   MATCH HEADER
+========================================= */
+
+.match-card {
+  margin-bottom: 14px;
+
+  padding: 18px 22px;
+
+  background: #15181e;
+
+  border: 1px solid #292e37;
+  border-radius: 7px;
+}
+
+.match-card-top {
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+
+  border-bottom: 1px solid #282d35;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.competition {
+  font-size: 12px;
+  color: #b7bdc6;
+}
+
+.match-id {
+  margin-left: 10px;
+
+  font-size: 11px;
+
+  color: #6f7680;
+}
+
+.live-badge {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  color: #8bb89b;
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #69a77c;
+}
+
+.match-score {
+  display: grid;
+
+  grid-template-columns:
+    1fr 100px 1fr;
+
+  align-items: center;
+
+  text-align: center;
+}
+
+.score-team h2 {
+  margin: 6px 0;
+
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.score-team strong {
+  font-size: 34px;
+  font-weight: 600;
+}
+
+.team-type {
+  font-size: 9px;
+  letter-spacing: 1px;
+
+  color: #6f7680;
+}
+
+.match-center {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+
+  align-items: center;
+}
+
+.match-center strong {
+  font-size: 16px;
+}
+
+.match-status {
+  font-size: 9px;
+
+  color: #7fa68a;
+}
+
+.vs {
+  margin-top: 4px;
+
+  font-size: 9px;
+
+  color: #59606a;
+}
+
+
+/* =========================================
+   ANALYTICS GRID
+========================================= */
+
+.analytics-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.3fr)
+    minmax(280px, 0.7fr);
+
+  gap: 14px;
+
+  align-items: start;
+}
+
+
+.analytics-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.3fr)
+    minmax(280px, 0.7fr);
+
+  gap: 14px;
+
+  align-items: stretch;
+}
+
+
+/* =========================================
+   ANALYTICS SECTION
+========================================= */
+
+.analytics-section {
+  background: #15181e;
+
+  border: 1px solid #292e37;
+
+  border-radius: 7px;
+
+  overflow: hidden;
+
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+.section-heading {
+  padding: 14px 16px;
+
+  border-bottom: 1px solid #282d35;
+}
+
+
+.section-heading h2 {
+  margin: 2px 0 0;
+
+  font-size: 15px;
+
+  font-weight: 600;
+}
+
+
+/* =========================================
+   STATISTICS
+========================================= */
+
+.stats-table {
+  width: 100%;
+
+  flex: 1;
+}
+
+
+.stat-row {
+  min-height: 42px;
+
+  padding: 8px 15px;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1.5fr 1fr;
+
+  align-items: center;
+
+  text-align: center;
+
+  border-bottom: 1px solid #22262d;
+}
+
+
+.stat-row:last-child {
+  border-bottom: none;
+}
+
+
+.stat-row strong {
+  font-size: 13px;
+
+  font-weight: 600;
+
+  color: #f0f1f3;
+}
+
+
+.stat-row span {
+  font-size: 11px;
+
+  color: #8b929d;
+}
+
+
+.stat-header {
+  background: #1b1f26;
+}
+
+
+.stat-header span {
+  color: #c4c8cf;
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+/* =========================================
+   TIMELINE
+========================================= */
+
+.timeline-section {
+  height: 100%;
+}
+
+.timeline {
+  width: 100%;
+
+  flex: 1;
+
+  display: block;
+
+  overflow-y: auto;
+
+  min-height: 300px;
+  max-height: 400px;
+}
+
+.event {
+  width: 100%;
+
+  min-height: 58px;
+
+  padding: 10px 16px;
+
+  display: grid;
+
+  grid-template-columns:
+    45px
+    12px
+    1fr;
+
+  gap: 8px;
+
+  align-items: center;
+
+  border-bottom: 1px solid #22262d;
+}
+
+.event:last-child {
+  border-bottom: none;
+}
+
+.event-minute {
+  font-size: 12px;
+  font-weight: 700;
+
+  color: #ffffff;
+}
+
+.event-marker {
+  width: 6px;
+  height: 6px;
+
+  background: #6fa780;
+
+  border-radius: 50%;
+}
+
+.event-content {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+
+  min-width: 0;
+}
+
+.event-content strong {
+  font-size: 11px;
+  font-weight: 600;
+
+  color: #e5e7eb;
+}
+
+.event-content span {
+  font-size: 11px;
+
+  color: #858b95;
+}
+
+.timeline-empty {
+  padding: 30px 16px;
+
+  text-align: center;
+
+  font-size: 12px;
+
+  color: #737b86;
+}
+
+
+/* scrollbar */
+
+.timeline::-webkit-scrollbar {
+  width: 5px;
+}
+
+.timeline::-webkit-scrollbar-track {
+  background: #15181e;
+}
+
+.timeline::-webkit-scrollbar-thumb {
+  background: #343a44;
+
+  border-radius: 4px;
+}
+
+/* =========================================
+   HISTORY
+========================================= */
+
+.history-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fill, minmax(280px, 1fr));
+
+  gap: 12px;
+}
+
+.history-card {
+  padding: 16px;
+
+  background: #15181e;
+
+  border: 1px solid #292e37;
+  border-radius: 6px;
+}
+
+.history-card:hover {
+  border-color: #414852;
+}
+
+.history-top {
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 10px;
+
+  color: #747b86;
+}
+
+.history-status {
+  color: #989fa8;
+
+  font-weight: 600;
+}
+
+.history-teams {
+  padding: 20px 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 8px;
+}
+
+.history-teams strong {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.history-teams span {
+  font-size: 10px;
+
+  color: #636a74;
+}
+
+.history-footer {
+  padding-top: 10px;
+
+  border-top: 1px solid #252a31;
+
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 10px;
+
+  color: #737a84;
+}
+
+
+/* =========================================
+   GENERAL
+========================================= */
+
+.back-link {
+  display: inline-block;
+
+  margin-bottom: 18px;
+
+  font-size: 12px;
+
+  color: #8d949e;
+}
+
+.back-link:hover {
+  color: #ffffff;
+}
+
+.page-message,
+.empty-state {
+  padding: 70px 20px;
+
+  text-align: center;
+
+  color: #808792;
+}
+
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+.timeline::-webkit-scrollbar {
+  width: 5px;
+}
+
+.timeline::-webkit-scrollbar-track {
+  background: #15181e;
+}
+
+.timeline::-webkit-scrollbar-thumb {
+  background: #343a44;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+  .navbar {
+    height: auto;
+
+    padding: 15px 4%;
+
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 12px;
+  }
+
+  .page-heading {
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 10px;
+  }
+
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .match-score {
+    grid-template-columns:
+      1fr 70px 1fr;
+  }
+
+  .score-team h2 {
+    font-size: 16px;
+  }
+
+  .score-team strong {
+    font-size: 28px;
+  }
+
+}
